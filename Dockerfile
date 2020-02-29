@@ -1,13 +1,14 @@
+# Start with a base image containing Java runtime
 FROM adoptopenjdk/openjdk11:latest
 
 # Add Author info
-LABEL maintainer="yuni@gmail.com"
+LABEL maintainer="cn3085@gmail.com"
 
 # Add a volume to /tmp
 VOLUME /tmp
 
 # Make port 8080 available to the world outside this container
-EXPOSE 80
+EXPOSE 8080
 
 # The application's jar file
 ARG JAR_FILE=build/libs/MySpringApp-0.0.1-SNAPSHOT.jar
@@ -17,4 +18,3 @@ ADD ${JAR_FILE} springboot.jar
 
 # Run the jar file
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/springboot.jar"]
-
